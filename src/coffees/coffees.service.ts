@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Coffee } from './entities/coffee.entity';
 import { Repository } from 'typeorm';
 import { CreateCoffeeDto } from './dto/create-coffee.dto';
+import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 
 @Injectable()
 export class CoffeesService {
@@ -28,7 +29,7 @@ export class CoffeesService {
     return this.coffeeRepository.save(coffee);
   }
 
-  async update(id: string, updateCoffeeDto: CreateCoffeeDto) {
+  async update(id: string, updateCoffeeDto: UpdateCoffeeDto) {
     const coffee = await this.coffeeRepository.preload({
       id: +id,
       ...updateCoffeeDto,
