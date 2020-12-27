@@ -116,7 +116,7 @@ export class CoffeesService {
         await this.coffeeRepository.save({
           name: item.name,
           description: item.description,
-          brand: item.category,
+          category: item.category,
         });
       }
       return Promise.resolve(true);

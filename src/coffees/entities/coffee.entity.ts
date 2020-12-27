@@ -19,7 +19,7 @@ export class Coffee {
   description: string;
 
   @Column()
-  brand: string;
+  category: string;
 
   @Column({ default: 0 })
   recommendations: number;
