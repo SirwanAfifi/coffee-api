@@ -113,7 +113,11 @@ export class CoffeesService {
   async importData(): Promise<boolean> {
     try {
       for (const item of data) {
-        await this.coffeeRepository.save(item);
+        await this.coffeeRepository.save({
+          name: item.name,
+          description: item.description,
+          brand: item.category,
+        });
       }
       return Promise.resolve(true);
     } catch (error) {
