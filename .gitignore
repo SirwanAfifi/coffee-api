@@ -35,3 +35,5 @@ lerna-debug.log*
 .env
 yarn.lock
 data.json
+docker.env
+ormconfig.js

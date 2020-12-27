@@ -1,14 +1,14 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
-export class Init1609092603301 implements MigrationInterface {
-  name = 'Init1609092603301';
+export class Init1609096861209 implements MigrationInterface {
+  name = 'Init1609096861209';
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(
       `CREATE TABLE "flavor" ("id" SERIAL NOT NULL, "name" character varying NOT NULL, CONSTRAINT "PK_934fe79b3d8131395c29a040ee5" PRIMARY KEY ("id"))`,
     );
     await queryRunner.query(
-      `CREATE TABLE "coffee" ("id" SERIAL NOT NULL, "name" character varying NOT NULL, "description" character varying, "brand" character varying NOT NULL, "recommendations" integer NOT NULL DEFAULT '0', CONSTRAINT "PK_4d27239ee0b99a491ad806aec46" PRIMARY KEY ("id"))`,
+      `CREATE TABLE "coffee" ("id" SERIAL NOT NULL, "name" character varying NOT NULL, "description" character varying, "category" character varying NOT NULL, "recommendations" integer NOT NULL DEFAULT '0', CONSTRAINT "PK_4d27239ee0b99a491ad806aec46" PRIMARY KEY ("id"))`,
     );
     await queryRunner.query(
       `CREATE TABLE "event" ("id" SERIAL NOT NULL, "type" character varying NOT NULL, "name" character varying NOT NULL, "payload" json NOT NULL, CONSTRAINT "PK_30c2f3bbaf6d34a55f8ae6e4614" PRIMARY KEY ("id"))`,
