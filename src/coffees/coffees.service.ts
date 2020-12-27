@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  InternalServerErrorException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Coffee } from './entities/coffee.entity';
 import { Connection, Repository } from 'typeorm';
@@ -7,6 +11,7 @@ import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 import { Flavor } from './entities/flavor.entity';
 import { PaginationQueryDto } from 'src/common/dto/pagination-query.dto';
 import { Event } from 'src/events/entities/event.entity';
+import * as data from '../data.json';
 
 @Injectable()
 export class CoffeesService {
@@ -102,6 +107,17 @@ export class CoffeesService {
       await queryRunner.rollbackTransaction();
     } finally {
       await queryRunner.release();
+    }
+  }
+
+  async importData(): Promise<boolean> {
+    try {
+      for (const item of data) {
+        await this.coffeeRepository.save(item);
+      }
+      return Promise.resolve(true);
+    } catch (error) {
+      throw new InternalServerErrorException(`Error in importing data`);
     }
   }
 }

@@ -44,4 +44,9 @@ export class CoffeesController {
   delete(@Param('id') id: string) {
     return this.coffeeService.remove(id);
   }
+
+  @Post('/importData')
+  importData() {
+    return this.coffeeService.importData();
+  }
 }
