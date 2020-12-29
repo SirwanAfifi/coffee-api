@@ -15,6 +15,7 @@ services:
 
   pgadmin:
     image: dpage/pgadmin4
+    restart: always
     ports:
       - '5433:80'
     volumes:
